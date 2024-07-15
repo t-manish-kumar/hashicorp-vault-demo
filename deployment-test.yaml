@@ -14,14 +14,14 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/agent-inject-status: "update"
-        vault.hashicorp.com/agent-inject-secret-login: "secret/login"
+        vault.hashicorp.com/agent-inject-secret-login: "secret/clisecret"
         vault.hashicorp.com/agent-inject-template-login: |
-          {{- with secret "secret/login" -}}
-          pattoken={{ .Data.data.pattoken }}
+          {{- with secret "secret/clisecret" -}}
+          pattoken={{ .Data.data.token }}
           {{- end }}
-        vault.hashicorp.com/agent-inject-secret-my-first-secret: "secret/my-first-secret"
+        vault.hashicorp.com/agent-inject-secret-my-first-secret: "secret/uisecret"
         vault.hashicorp.com/agent-inject-template-my-first-secret: |
-          {{- with secret "secret/my-first-secret" -}}
+          {{- with secret "secret/uisecret" -}}
           username={{ .Data.data.username }}
           password={{ .Data.data.password }}
           {{- end }}
