@@ -6,6 +6,12 @@ Create the vault namespace:
 kubectl create namespace vault
 ```
 
+Add the HashiCorp Helm repository
+
+```bash
+helm repo add hashicorp https://helm.releases.hashicorp.com
+```
+
 Install HashiCorp Vault using Helm:
 
 ```bash
