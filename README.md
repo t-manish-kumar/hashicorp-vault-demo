@@ -67,7 +67,7 @@ vault write auth/kubernetes/role/vault-role \
 Create secret using
 
 ```bash
-vault kv put secret/cli-secret token=secretcreatedbycli
+vault kv put secret/clisecret token=secretcreatedbycli
 ```
 
 Verify if secret created or not
