@@ -61,9 +61,9 @@ vault write auth/kubernetes/config \
                                   or
 
   kubectl exec -n vault -it vault-0 -- vault write auth/kubernetes/config \
-  token_reviewer_jwt="$(kubectl get secret -n webapps $(kubectl get serviceaccount vault-auth -n default -o jsonpath='{.secrets[0].name}') -o jsonpath='{.data.token}' | base64 --decode)" \
+  token_reviewer_jwt="$(kubectl get secret -n namespace_name $(kubectl get serviceaccount vault-auth -n default -o jsonpath='{.secrets[0].name}') -o jsonpath='{.data.token}' | base64 --decode)" \
   kubernetes_host="$(kubectl config view --raw -o jsonpath='{.clusters[0].cluster.server}')" \
-  kubernetes_ca_cert="$(kubectl get secret -n webapps $(kubectl get serviceaccount vault-auth -n default -o jsonpath='{.secrets[0].name}') -o jsonpath='{.data.ca\.crt}' | base64 --decode)"
+  kubernetes_ca_cert="$(kubectl get secret -n namespace_name $(kubectl get serviceaccount vault-auth -n default -o jsonpath='{.secrets[0].name}') -o jsonpath='{.data.ca\.crt}' | base64 --decode)"
 ```
 
 Create a role(vault-role) that binds the above policy to a Kubernetes service account(vault-serviceaccount) in a specific namespace. This allows the service account to access secrets stored in Vault
